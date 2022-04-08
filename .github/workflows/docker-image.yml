@@ -23,7 +23,7 @@ jobs:
         with:
           username: avinashyadavpuresoftware
           password: Avinash@8794
-      - name: Build and Publish API
+      - name: Build and Publish chef-kitchen_amazonlinux2
         uses: docker/build-push-action@v2
         with:
          context: ./chef-kitchen/systemd/amazonlinux2
@@ -31,14 +31,7 @@ jobs:
          platforms: linux/arm64
          push: true
          tags: avinashyadavpuresoftware/chef-kitchen_amazonlinux2:latest_arm
-      - name: Build and Publish chef-kitchen_opensuse
-        uses: docker/build-push-action@v2
-        with:
-         context: ./chef-kitchen/systemd/opensuse
-         file: ./chef-kitchen/systemd/opensuse/Dockerfile
-         platforms: linux/arm64
-         push: true
-         tags: avinashyadavpuresoftware/chef-kitchen_opensuse:latest_arm
+
       - name: Build and Publish chef-kitchen_rocky8
         uses: docker/build-push-action@v2
         with:
@@ -575,11 +568,11 @@ jobs:
       - name: Build and Publish pgbouncer_4.0.9
         uses: docker/build-push-action@v2
         with:
-         context: ./pgbouncer/4.0.9
-         file: ./pgbouncer/4.0.9/Dockerfile
+         context: ./powerdns_recursor/4.0.9
+         file: ./powerdns_recursor/4.0.9/Dockerfile
          platforms: linux/arm64
          push: true
-         tags: avinashyadavpuresoftware/pgbouncer_4.0.9:latest_arm
+         tags: avinashyadavpuresoftware/powerdns_recursor_4.0.9:latest_arm
          
   build_for_snmp:
     runs-on: ubuntu-latest
