@@ -1,0 +1,715 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build_for_chef_kitchen:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish chef-kitchen_amazonlinux2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/amazonlinux2
+         file: ./chef-kitchen/systemd/amazonlinux2/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_amazonlinux2:latest_amd
+      
+      - name: Build and Publish chef-kitchen_rocky8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/rocky8
+         file: ./chef-kitchen/systemd/rocky8/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_rocky8:latest_amd
+         
+      - name: Build and Publish chef-kitchen_centos6
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/centos6
+         file: ./chef-kitchen/systemd/centos6/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_centos6:latest_amd
+         
+      - name: Build and Publish chef-kitchen_centos7
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/centos7
+         file: ./chef-kitchen/systemd/centos7/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_centos7:latest_amd
+         
+      - name: Build and Publish chef-kitchen_centos8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/centos8
+         file: ./chef-kitchen/systemd/centos8/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_centos8:latest_amd
+         
+      - name: Build and Publish chef-kitchen_script_0.1
+        uses: docker/build-push-action@v2
+        with:
+         context: ./chef-kitchen/systemd/scripts/0.1
+         file: ./chef-kitchen/systemd/scripts/0.1/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/chef-kitchen_script_0.1:latest_amd
+      
+  build_for_ddtrace_rb:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish ddtrace_rb_1.9.3
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/1.9.3
+         file: ./dd-trace-rb/1.9.3/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_1.9.3:latest_amd
+      - name: Build and Publish ddtrace_rb_2.0.0
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.0.0
+         file: ./dd-trace-rb/2.0.0/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.0.0:latest_amd
+      - name: Build and Publish ddtrace_rb_2.1.10
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.1.10
+         file: ./dd-trace-rb/2.1.0/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftwareddtrace_rb_2.1.10:latest_amd
+         
+      - name: Build and Publish ddtrace_rb_2.2.10
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.2.10
+         file: ./dd-trace-rb/2.2.10/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.2.10:latest_amd
+         
+      - name: Build and Publish ddtrace_rb_2.3.7
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.3.7
+         file: ./dd-trace-rb/2.3.7/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.3.7:latest_amd
+         
+      - name: Build and Publish ddtrace_rb_2.3.8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.3.8
+         file: ./dd-trace-rb/2.3.8/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.3.8:latest_amd
+         
+      - name: Build and Publish ddtrace_rb_2.4.4
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.4.4
+         file: ./dd-trace-rb/2.4.4/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.4.4:latest_amd
+      - name: Build and Publish ddtrace_rb_2.4.6
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-rb/2.4.6
+         file: ./dd-trace-rb/2.4.6/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_rb_2.4.6:latest_amd
+         
+  build_for_couch:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish couch_2.3
+        uses: docker/build-push-action@v2
+        with:
+         context: ./couch/2.3
+         file: ./couch/2.3/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/couch_2.3:latest_amd
+         
+  build_for_couchbasemock:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish couchbasemock_1.5.23
+        uses: docker/build-push-action@v2
+        with:
+         context: ./couchbasemock/1.5.23
+         file: ./couchbasemock/1.5.23/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/couchbasemock_1.5.23:latest_amd
+     
+  build_for_dd-opentracing-cpp:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish dd-opentracing-cpp_build_0.3.7
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-opentracing-cpp/build/0.3.7
+         file: ./dd-opentracing-cpp/build/0.3.7/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/dd-opentracing-cpp_build_0.3.7:latest_amd
+      - name: Build and Publish dd-opentracing-cpp_test_0.3.1
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-opentracing-cpp/test/0.3.1
+         file: ./dd-opentracing-cpp/test/0.3.1/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/dd-opentracing-cpp_test_0.3.1:latest_amd
+         
+  build_for_dd-trace-csharp:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish dd-trace-csharp_0.1.0
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-csharp/0.1.0
+         file: ./dd-trace-csharp/0.1.0/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/dd-trace-csharp_0.1.0:latest_amd
+         
+  build_for_dd-trace-py:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish dd-trace-py
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-py
+         file: ./dd-trace-py/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/dd-trace-py:latest_amd
+         
+  build_for_dd-trace-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish ddtrace_alpine_php-7.2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-php/
+         file: ./dd-trace-php/Dockerfile_72
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_alpine_php-7.2:latest_amd
+      - name: Build and Publish ddtrace_alpine_php-7.1
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-php/
+         file: ./dd-trace-php/Dockerfile_71
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_alpine_php-7.1:latest_amd
+      - name: Build and Publish ddtrace_alpine_php-7.0
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-php/
+         file: ./dd-trace-php/Dockerfile_70
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_alpine_php-7.0:latest_amd
+      - name: Build and Publish ddtrace_alpine_php-5.6
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-php/
+         file: ./dd-trace-php/Dockerfile_56
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_alpine_php-5.6:latest_amd
+      - name: Build and Publish ddtrace_alpine_php-5.4
+        uses: docker/build-push-action@v2
+        with:
+         context: ./dd-trace-php/
+         file: ./dd-trace-php/Dockerfile_54
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ddtrace_alpine_php-5.4:latest_amd
+         
+         
+  build_for_druid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish druid_0.16
+        uses: docker/build-push-action@v2
+        with:
+         context: ./druid/0.16
+         file: ./druid/0.16/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/druid_0.16:latest_amd
+         
+         
+  build_for_elasticsearch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish elasticsearch_0.90
+        uses: docker/build-push-action@v2
+        with:
+         context: ./elasticsearch/0.90
+         file: ./elasticsearch/0.90/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/elasticsearch_0.90:latest_amd
+      - name: Build and Publish elasticsearch_1.0
+        uses: docker/build-push-action@v2
+        with:
+         context: ./elasticsearch/1.0
+         file: ./elasticsearch/1.0/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/elasticsearch_1.0:latest_amd
+         
+      - name: Build and Publish elasticsearch_1.1
+        uses: docker/build-push-action@v2
+        with:
+         context: ./elasticsearch/1.1
+         file: ./elasticsearch/1.1/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/elasticsearch_1.1:latest_amd
+         
+      - name: Build and Publish elasticsearch_1.2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./elasticsearch/1.2
+         file: ./elasticsearch/1.2/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/elasticsearch_1.2:latest_amd
+         
+         
+  build_for_ibmmq:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish ibmmq_v8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./ibmmq/v8
+         file: ./ibmmq/v8/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/ibmmq_v8:latest_amd
+         
+  build_for_kyototycoon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish kyototycoon_0.9.56
+        uses: docker/build-push-action@v2
+        with:
+         context: ./kyototycoon/0.9.56
+         file: ./kyototycoon/0.9.56/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/kyototycoon_0.9.56:latest_amd
+         
+  build_for_memcached:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish memcached
+        uses: docker/build-push-action@v2
+        with:
+         context: ./memcached
+         file: ./memcached/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/memcached:latest_amd
+     
+  build_for_nginx-vts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish nginx-vts
+        uses: docker/build-push-action@v2
+        with:
+         context: ./nginx-vts
+         file: ./nginx-vts/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/nginx-vts:latest_amd
+   
+  build_for_pgbouncer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish pgbouncer_1.7
+        uses: docker/build-push-action@v2
+        with:
+         context: ./pgbouncer/1.7
+         file: ./pgbouncer/1.7/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/pgbouncer_1.7:latest_amd
+      - name: Build and Publish pgbouncer_1.8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./pgbouncer/1.8
+         file: ./pgbouncer/1.8/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/pgbouncer_1.8:latest_amd
+         
+         
+  build_for_powerdns_recursor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish powerdns_recursor_3.7.3
+        uses: docker/build-push-action@v2
+        with:
+         context: ./powerdns_recursor/3.7.3
+         file: ./powerdns_recursor/3.7.3/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/powerdns_recursor_3.7.3:latest_amd
+      - name: Build and Publish pgbouncer_4.0.9
+        uses: docker/build-push-action@v2
+        with:
+         context: ./powerdns_recursor/4.0.9
+         file: ./powerdns_recursor/4.0.9/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/pgbouncer_4.0.9:latest_amd
+         
+  build_for_snmp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish snmp
+        uses: docker/build-push-action@v2
+        with:
+         context: ./snmp
+         file: ./snmp/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/snmp:latest_amd
+         
+  build_for_supervisord:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish supervisord
+        uses: docker/build-push-action@v2
+        with:
+         context: ./supervisord/3.3.3
+         file: ./supervisord/3.3.3/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/supervisord:latest_amd    
+         
+         
+  build_for_sqlserver:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish sqlserver_2019
+        uses: docker/build-push-action@v2
+        with:
+         context: ./sqlserver/windows/
+         file: ./sqlserver/windows/Dockerfile_2019
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/sqlserver_2019:latest_amd  
+      - name: Build and Publish sqlserver_2017
+        uses: docker/build-push-action@v2
+        with:
+         context: ./sqlserver/windows/
+         file: ./sqlserver/windows/Dockerfile_2017
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/sqlserver_2017:latest_amd
+      - name: Build and Publish sqlserver_2016
+        uses: docker/build-push-action@v2
+        with:
+         context: ./sqlserver/windows/
+         file: ./sqlserver/windows/Dockerfile_2016
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/sqlserver_2016:latest_amd
+   
+  build_for_varnish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish varnish_4.1.7
+        uses: docker/build-push-action@v2
+        with:
+         context: ./varnish/4.1.7/
+         file: ./varnish/4.1.7/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/varnish_4.1.7:latest_amd  
+      - name: Build and Publish varnish_5.2.1
+        uses: docker/build-push-action@v2
+        with:
+         context: ./varnish/5.2.1/
+         file: ./varnish/5.2.1/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/varnish_5.2.1:latest_amd
+         
+  build_for_voltdb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish voltdb_10.0
+        uses: docker/build-push-action@v2
+        with:
+         context: ./voltdb/10.0
+         file: ./voltdb/10.0/Dockerfile
+         platforms: linux/amd64
+         push: true
+         tags: avinashyadavpuresoftware/voltdb_10.0:latest_amd 
