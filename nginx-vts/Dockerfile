@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:latest
 
 ENV NGINX_VERSION 1.13.12
 ENV VTS_VERSION 0.1.15
