@@ -15,7 +15,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN set -ex; \
         apt-get update; \
         mkdir -p /usr/share/man/man1; \
-        apt-get install --no-install-recommends \
+        apt-get install --force-yes --no-install-recommends \
             git mercurial xvfb \
             locales sudo openssh-client ca-certificates tar gzip parallel \
             net-tools netcat unzip zip bzip2 gnupg curl wget \
