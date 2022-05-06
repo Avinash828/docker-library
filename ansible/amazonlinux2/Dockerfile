@@ -1,6 +1,6 @@
 FROM amazonlinux:2
 
-ARG ANSIBLE_VERSION
+ARG ANSIBLE_VERSION=2.7
 RUN test -n "$ANSIBLE_VERSION"
 
 # Define to fix pip install error for some ansible versions:
