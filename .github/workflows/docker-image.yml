@@ -7,6 +7,53 @@ on:
     branches: [ master ]
 
 jobs:
+  build_for_anisible:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Setup buildx
+        uses: docker/setup-Buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: avinashyadavpuresoftware
+          password: Avinash@8794
+      - name: Build and Publish anisible_amazonlinux2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./ansible/amazonlinux2
+         file: ./ansible/amazonlinux2/Dockerfile
+         platforms: linux/arm64
+         push: true
+         tags: avinashyadavpuresoftware/anisible_amazonlinux2:latest_arm
+      - name: Build and Publish centos_amazonlinux2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./ansible/centos
+         file: ./ansible/centos/Dockerfile
+         platforms: linux/arm64
+         push: true
+         tags: avinashyadavpuresoftware/anisible_centos:latest_arm
+      - name: Build and Publish debian_amazonlinux2
+        uses: docker/build-push-action@v2
+        with:
+         context: ./ansible/debian
+         file: ./ansible/debain/Dockerfile
+         platforms: linux/arm64
+         push: true
+         tags: avinashyadavpuresoftware/anisible_debian:latest_arm
+      - name: Build and Publish debian_rocky8
+        uses: docker/build-push-action@v2
+        with:
+         context: ./ansible/rocky8
+         file: ./ansible/rocky8/Dockerfile
+         platforms: linux/arm64
+         push: true
+         tags: avinashyadavpuresoftware/anisible_rocky8:latest_arm
 
   build_for_chef_kitchen:
 
